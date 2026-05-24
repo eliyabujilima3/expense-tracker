@@ -134,11 +134,11 @@ def home():
     conn, _ = get_db_connection()
     cursor = conn.cursor(dictionary=True) if _ else conn.cursor()
 
-    cursor.execute("SELECT * FROM transactions WHERE user_id=?", (session["user_id"],))
+    cursor.execute("SELECT * FROM transactions WHERE user_id=%s", (session["user_id"],))
     transactions = cursor.fetchall()
 
     cursor.execute(
-            "SELECT * FROM budgets WHERE user_id=?",
+            "SELECT * FROM budgets WHERE user_id=%s",
             (session["user_id"],)
         )
 
@@ -221,7 +221,10 @@ def add():
             if category == "__new__":
                 category = request.form.get("new_category")
                 # Insert new category if not exists
-                cursor.execute("INSERT OR IGNORE INTO categories (name) VALUES (?)", (category,))
+                if _:
+                    cursor.execute("INSERT IGNORE INTO categories (name) VALUES (%s)", (category,))
+                else:
+                    cursor.execute("INSERT OR IGNORE INTO categories (name) VALUES (?)", (category,))
 
             if not category:
                 category = "Other"
@@ -233,7 +236,7 @@ def add():
             if edit_id:
                 # Update existing transaction
                 cursor.execute(
-                    "UPDATE transactions SET name=?, amount=?, category=? WHERE id=? AND user_id=?",
+                    "UPDATE transactions SET name=%s, amount=%s, category=%s WHERE id=%s AND user_id=%s",
                     (name, amount, category, edit_id, session["user_id"])
                 )
             else:
@@ -241,7 +244,7 @@ def add():
                 date = datetime.now().strftime("%Y-%m-%d")
                 cursor.execute("""
                     INSERT INTO transactions (type, name, amount, category, date, user_id)
-                    VALUES (?, ?, ?, ?, ?, ?)
+                    VALUES (%s, %s, %s, %s, %s, %s)
                 """, ("expense", name, amount, category, date, session["user_id"]))
 
             conn.commit()
@@ -276,7 +279,7 @@ def add_income():
 
             cursor.execute("""
                 INSERT INTO transactions (type, name, amount, category, date, user_id)
-                VALUES (?, ?, ?, ?, ?, ?)
+                VALUES (%s, %s, %s, %s, %s, %s)
             """, ("income", name, amount, "Income", date, session["user_id"]))
 
             conn.commit()
@@ -303,7 +306,7 @@ def delete(id):
     cursor = conn.cursor(dictionary=True) if _ else conn.cursor()
 
     cursor.execute(
-        "DELETE FROM transactions WHERE id=? AND user_id=?",
+        "DELETE FROM transactions WHERE id=%s AND user_id=%s",
         (id, session["user_id"])
     )
 
@@ -323,7 +326,7 @@ def edit(id):
     conn, _ = get_db_connection()
     cursor = conn.cursor(dictionary=True) if _ else conn.cursor()
 
-    cursor.execute("SELECT * FROM transactions WHERE id=? AND user_id=?", (id, session["user_id"]))
+    cursor.execute("SELECT * FROM transactions WHERE id=%s AND user_id=%s", (id, session["user_id"]))
     transaction = cursor.fetchone()
 
     conn.close()
@@ -353,7 +356,7 @@ def history():
     conn, _ = get_db_connection()
     cursor = conn.cursor(dictionary=True) if _ else conn.cursor()
 
-    cursor.execute("SELECT * FROM transactions WHERE user_id=? ORDER BY date DESC", (session["user_id"],))
+    cursor.execute("SELECT * FROM transactions WHERE user_id=%s ORDER BY date DESC", (session["user_id"],))
     all_transactions = cursor.fetchall()
 
     conn.close()
@@ -411,12 +414,12 @@ def set_budget():
         # 🔥 FIX: FORCE UPDATE PER USER
         cursor.execute("""
             DELETE FROM budgets
-            WHERE user_id=? AND category=?
+            WHERE user_id=%s AND category=%s
         """, (session["user_id"], category))
 
         cursor.execute("""
             INSERT INTO budgets (user_id, category, amount)
-            VALUES (?, ?, ?)
+            VALUES (%s, %s, %s)
         """, (session["user_id"], category, amount))
 
         conn.commit()
@@ -439,7 +442,7 @@ def register():
         password = generate_password_hash(request.form["password"])
 
         # CHECK IF USER EXISTS
-        cursor.execute("SELECT * FROM users WHERE username=?", (username,))
+        cursor.execute("SELECT * FROM users WHERE username=%s", (username,))
         existing_user = cursor.fetchone()
 
         if existing_user:
@@ -448,7 +451,7 @@ def register():
 
         cursor.execute("""
             INSERT INTO users (username, password)
-            VALUES (?, ?)
+            VALUES (%s, %s)
         """, (username, password))
 
         conn.commit()
@@ -467,7 +470,7 @@ def login():
         username = request.form["username"]
         password = request.form["password"]
 
-        cursor.execute("SELECT * FROM users WHERE username=?", (username,))
+        cursor.execute("SELECT * FROM users WHERE username=%s", (username,))
         user = cursor.fetchone()
 
         conn.close()
@@ -508,11 +511,11 @@ def charts():
     conn, _ = get_db_connection()
     cursor = conn.cursor(dictionary=True) if _ else conn.cursor()
 
-    cursor.execute("SELECT * FROM transactions WHERE user_id=?", (session["user_id"],))
+    cursor.execute("SELECT * FROM transactions WHERE user_id=%s", (session["user_id"],))
     transactions = cursor.fetchall()
 
     cursor.execute(
-        "SELECT * FROM budgets WHERE user_id=?",
+        "SELECT * FROM budgets WHERE user_id=%s",
         (session["user_id"],)
     )
 
@@ -543,7 +546,7 @@ def export():
     conn, _ = get_db_connection()
     cursor = conn.cursor(dictionary=True) if _ else conn.cursor()
 
-    cursor.execute("SELECT * FROM transactions WHERE user_id=? ORDER BY date DESC", (session["user_id"],))
+    cursor.execute("SELECT * FROM transactions WHERE user_id=%s ORDER BY date DESC", (session["user_id"],))
     transactions = cursor.fetchall()
     conn.close()
 
