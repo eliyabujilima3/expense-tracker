@@ -556,15 +556,17 @@ small {
     background: linear-gradient(180deg, #1a2a4a 0%, #1e3a5f 60%, #1a2a4a 100%);
     display: flex;
     flex-direction: column;
-    position: sticky;
-    top: 60px;
-    height: calc(100vh - 60px);
-    overflow-y: auto;
+    /* remove sticky so it scrolls */
+    position: relative;         
+    top: 0;                     
+    height: auto;                /* let content define height */
+    overflow-y: auto;            /* allow scrolling */
     box-shadow: 3px 0 12px rgba(0, 0, 0, 0.15);
     transition: transform 0.3s ease;
     z-index: 100;
 }
 
+/* ===== SIDEBAR HEADER ===== */
 .sidebar-header {
     padding: 20px 20px 12px;
     font-size: 11px;
@@ -617,11 +619,9 @@ small {
     width: 24px;
     text-align: center;
 }
-
 .nav-label {
     flex: 1;
 }
-
 /* ===== SIDEBAR FOOTER (Set Budget) ===== */
 .sidebar-footer {
     margin-top: auto;
