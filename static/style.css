@@ -640,7 +640,7 @@ small {
     position: fixed;
     inset: 0;
     background: rgba(0, 0, 0, 0.45);
-    z-index: 99;
+    z-index: 250;
     opacity: 0;
     transition: opacity 0.3s ease;
 }
@@ -742,7 +742,7 @@ small {
         left: 0;
         height: 100vh;
         transform: translateX(-100%);
-        z-index: 150;
+        z-index: 300;
     }
 
     .sidebar.open {
