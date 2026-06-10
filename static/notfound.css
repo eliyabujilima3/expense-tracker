@@ -1,0 +1,66 @@
+/* ---- page not found style  ---- */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg, #0f172a, #1e293b);
+    color:white;
+}
+
+.container{
+    width:100%;
+    padding:20px;
+    display:flex;
+    justify-content:center;
+}
+
+.card{
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,0.1);
+    border-radius:20px;
+    padding:40px;
+    max-width:600px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,0.3);
+}
+
+.icon{
+    font-size:70px;
+    margin-bottom:20px;
+}
+
+h1{
+    font-size:2rem;
+    margin-bottom:15px;
+}
+
+p{
+    font-size:1.1rem;
+    line-height:1.7;
+    color:#d1d5db;
+    margin-bottom:30px;
+}
+
+.btn{
+    display:inline-block;
+    padding:12px 30px;
+    background:#3b82f6;
+    color:white;
+    text-decoration:none;
+    border-radius:8px;
+    transition:0.3s ease;
+}
+
+.btn:hover{
+    background:#2563eb;
+    transform:translateY(-2px);
+}
