@@ -789,3 +789,40 @@ ol li {
     padding: 10px;
     border-radius: 8px;
 }
+.login-page {
+    display: flex;
+    min-height: 100vh;
+}
+.left-panel {
+    flex: 1;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+.left-content {
+    max-width: 400px;
+}
+
+.right-panel {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f4f6f9;
+    padding: 40px;
+}
+
+/* Mobile: stack panels */
+@media (max-width: 768px) {
+    .login-page {
+        flex-direction: column;
+    }
+    .left-panel, .right-panel {
+        flex: none;
+        width: 100%;
+        padding: 20px;
+    }
+}
