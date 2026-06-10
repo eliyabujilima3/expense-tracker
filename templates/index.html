@@ -13,12 +13,12 @@
 <!-- ================= HEADER ================= -->
 <div class="header">
     <div class="header-left">
-        <h2>💰 Smart Expense Tracker</h2>
-        <span class="greeting">{{ greeting }}, {{ username }} 👋</span>
+        <h2>Smart Expense Tracker</h2>
+        <span class="greeting">{{ greeting }}, {{ username }} </span>
     </div>
     <div class="user-info">
         👤 <strong>{{ username }}</strong>
-        <a href="/logout">🚪 Logout</a>
+        <a href="/logout"> Logout</a>
     </div>
 </div>
 
@@ -111,7 +111,7 @@
         <p>Total Expenses: {{ expense }} TSh</p>
 
         <!-- ================= INSIGHTS ================= -->
-        <h2>🧠 Smart Insights</h2>
+        <h2> Smart Insights</h2>
         <ul>
         {% for i in insights %}
             <li style="margin:5px 0; font-size:16px;">{{ i }}</li>
@@ -133,9 +133,9 @@
         <tr>
             <td>
                 {% if t.type == "income" %}
-                    <span style="color:green;">💰 Income</span>
+                    <span style="color:green;">Income</span>
                 {% else %}
-                    <span style="color:red;">💸 Expense</span>
+                    <span style="color:red;">Expense</span>
                 {% endif %}
             </td>
             <td>{{ t.name }}</td>
@@ -151,7 +151,7 @@
         </table>
 
         <!-- ================= WARNINGS ================= -->
-        <h2>⚠️ Budget Alerts</h2>
+        <h2> Budget Alerts</h2>
         {% if warnings and warnings|length > 0 %}
             {% for w in warnings %}
                 <p style="color:red;">{{ w }}</p>
@@ -161,13 +161,13 @@
         {% endif %}
 
         <!-- ================= BUDGET INSIGHTS ================= -->
-        <h2>🧠 Budget Intelligence</h2>
+        <h2> Budget Intelligence</h2>
         {% for b in budget_insights %}
             <p>{{ b }}</p>
         {% endfor %}
 
         <!-- ================= BUDGET USAGE ================= -->
-        <h3>📦 Budget Usage</h3>
+        <h3> Budget Usage</h3>
         <div class="cards">
             {% for cat, data in budget_data.items() %}
                 <div class="card">
