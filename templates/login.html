@@ -1,65 +1,133 @@
+```html
 <!DOCTYPE html>
 <html>
 <head>
     <title>Login - Smart Expense Tracker</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
+
 <body class="auth-body">
 
-<div class="auth-container">
-    <div class="logo-section">
-        <div class="logo">
-            <i class="fas fa-wallet"></i>
+<div class="login-page">
+
+    <!-- LEFT PANEL -->
+    <div class="left-panel">
+
+        <div class="left-content">
+
+            <div class="logo">
+                <i class="fas fa-wallet"></i>
+            </div>
+
+            <h1>Smart Expense Tracker</h1>
+
+            <p class="left-description">
+                Take control of your finances with confidence.
+                Track expenses, manage budgets and understand
+                your spending habits through detailed insights.
+            </p>
+
+            <div class="features-list">
+
+                <div class="feature-row">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Track Daily Expenses</span>
+                </div>
+
+                <div class="feature-row">
+                    <i class="fas fa-piggy-bank"></i>
+                    <span>Manage Monthly Budgets</span>
+                </div>
+
+                <div class="feature-row">
+                    <i class="fas fa-chart-pie"></i>
+                    <span>Visual Spending Analytics</span>
+                </div>
+
+                <div class="feature-row">
+                    <i class="fas fa-lock"></i>
+                    <span>Secure & Private Records</span>
+                </div>
+
+            </div>
+
         </div>
-        <h1>Smart Expense Tracker</h1>
-        <p class="tagline">This is the application that helps users manage their finances by tracking expenses, setting budgets, and analysing spending behaviour.</p>
+
     </div>
 
-    <div class="welcome-section">
-        <p class="description">
-            Welcome! To login, enter your details below and click the button.
-            If you don't have an account yet, register to get started.
-        </p>
-    </div>
+    <!-- RIGHT PANEL -->
+    <div class="right-panel">
 
-    <form method="POST" class="login-form">
-        <div class="input-group">
-            <i class="fas fa-user"></i>
-            <input type="text" name="username" placeholder="Username" required>
+        <div class="auth-container">
+
+            <div class="logo-section">
+                <h2>Welcome Back</h2>
+
+                <p class="tagline">
+                    Sign in to continue managing your finances.
+                </p>
+            </div>
+
+            <form method="POST" class="login-form">
+
+                <div class="input-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text"
+                           name="username"
+                           placeholder="Username"
+                           required>
+                </div>
+
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+
+                    <input type="password"
+                           id="password"
+                           name="password"
+                           placeholder="Password"
+                           required>
+
+                    <span onclick="togglePassword()"
+                          class="password-toggle">
+
+                        <i class="fas fa-eye"
+                           id="eye-icon"></i>
+
+                    </span>
+                </div>
+
+                <button type="submit" class="login-btn">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Login
+                </button>
+
+            </form>
+
+            <div class="divider">
+                <span>New User?</span>
+            </div>
+
+            <a href="/register" class="register-link">
+                <i class="fas fa-user-plus"></i>
+                Create Account
+            </a>
+
+            <div class="footer">
+                <p>Secure • Private • Smart</p>
+            </div>
+
         </div>
 
-        <div class="input-group">
-            <i class="fas fa-lock"></i>
-            <input type="password" id="password" name="password" placeholder="Password" required>
-            <span onclick="togglePassword()" class="password-toggle">
-                <i class="fas fa-eye" id="eye-icon"></i>
-            </span>
-        </div>
-
-        <button type="submit" class="login-btn">
-            <i class="fas fa-sign-in-alt"></i>
-            Login
-        </button>
-    </form>
-
-    <div class="divider">
-        <span>If you don't have an account, register below.</span>
     </div>
 
-    <a href="/register" class="register-link">
-        <i class="fas fa-user-plus"></i>
-        Register
-    </a>
-
-    <div class="footer">
-        <p>Secure • Private • Smart</p>
-    </div>
 </div>
 
 <script>
 function togglePassword() {
+
     let pass = document.getElementById("password");
     let eyeIcon = document.getElementById("eye-icon");
 
@@ -72,5 +140,7 @@ function togglePassword() {
     }
 }
 </script>
+
 </body>
 </html>
+```
