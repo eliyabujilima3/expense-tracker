@@ -172,6 +172,81 @@ small {
     padding: 40px;
 }
 
+/* LEFT PANEL CONTENT: inner wrapper */
+.left-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    max-width: 420px;
+    width: 100%;
+    gap: 20px;
+}
+
+.left-content h1 {
+    font-size: 30px;
+    font-weight: 700;
+    color: white;
+    margin: 0;
+    line-height: 1.2;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* LEFT PANEL DESCRIPTION */
+.left-description {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.88);
+    line-height: 1.7;
+    margin: 0;
+    font-weight: 400;
+}
+
+/* FEATURES LIST: column of feature rows */
+.features-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    width: 100%;
+    margin-top: 8px;
+}
+
+/* FEATURE ROW: icon + label side by side */
+.feature-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 13px 18px;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 500;
+    color: white;
+    transition: background 0.25s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: default;
+}
+
+.feature-row:hover {
+    background: rgba(255, 255, 255, 0.22);
+    transform: translateX(4px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+.feature-row i {
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.95);
+    width: 22px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.feature-row span {
+    flex: 1;
+    text-align: left;
+}
+
 /* RIGHT PANEL: login form */
 .right-panel {
     flex: 1;
@@ -204,7 +279,21 @@ small {
     }
     .left-panel, .right-panel {
         width: 100%;
-        padding: 20px;
+        padding: 30px 20px;
+    }
+    .left-content {
+        max-width: 100%;
+        gap: 16px;
+    }
+    .left-content h1 {
+        font-size: 24px;
+    }
+    .left-description {
+        font-size: 14px;
+    }
+    .feature-row {
+        padding: 11px 14px;
+        font-size: 14px;
     }
 }
 
